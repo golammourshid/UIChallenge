@@ -69,11 +69,41 @@ public class MainActivity extends AppCompatActivity {
         txtErrPass.setVisibility(View.GONE);
         txtErrRePass.setVisibility(View.GONE);
 
-        Snackbar.make(mainLayout, "User Registered", Snackbar.LENGTH_INDEFINITE)
+        String name = editTextPersonName.getText().toString();
+        String email = editTextPersonEmail.getText().toString();
+        String country = spinnerCountry.getSelectedItem().toString();
+        String gender = "";
+
+        switch (radioGroup.getCheckedRadioButtonId()) {
+            case R.id.radioMale:
+                gender = "Male";
+                break;
+            case R.id.radioFemale:
+                gender = "Female";
+                break;
+            case R.id.radioOther:
+                gender = "Other";
+                break;
+            default:
+                gender = "Unknown";
+                break;
+        }
+
+        String snackText = "Name: " + name + '\n' +
+                "Email: " + email + '\n' +
+                "Gender: " + gender + '\n' +
+                "Country: " + country;
+
+        Log.d(TAG, "showSnackBar: Snack Bar Text: " + snackText);
+
+        Snackbar.make(mainLayout, snackText, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Dismiss", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        editTextPersonName.setText("");
+                        editTextPersonEmail.setText("");
+                        editTextPersonPassword.setText("");
+                        editTextPersonRePassword.setText("");
                     }
                 })
                 .show();
@@ -104,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (editTextPersonRePassword.getText().toString().equals("")) {
             txtErrRePass.setVisibility(View.VISIBLE);
+            return false;
+        }
+
+        if (!editTextPersonRePassword.getText().toString().equals(editTextPersonPassword.getText().toString())) {
+            txtErrRePass.setVisibility(View.VISIBLE);
+            txtErrRePass.setText("Password doesn't match.");
             return false;
         }
 

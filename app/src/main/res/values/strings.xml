@@ -4,4 +4,12 @@
         https://www.astartingpoint.com/ (the “Site”). By accessing or using the
         Site you signify that you have read, understand and agree to be bound by these Terms
         of Service ("Terms of Service"). </string>
+    <string-array name="country">
+        <item>Bangladesh</item>
+        <item>India</item>
+        <item>Pakistan</item>
+        <item>Myanmar</item>
+        <item>Afghanistan</item>
+        <item>China</item>
+    </string-array>
 </resources>
